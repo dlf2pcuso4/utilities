@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Shorten HTML</title>
+    <style></style>
+  </head>
+  <body>
+    <input type="text" />
+    <button onclick="shorten()">Shorten</button>
+  </body>
+  <script>
+    function shorten() {
+      let input = document.getElementsByTagName("input")[0].value;
+      let inputChars = input.split("");
+      for (let i = 1; i < inputChars.length - 1; i++) {
+        if (inputChars[i] === " ") {
+          if (
+            inputChars[i - 1].toUpperCase() ==
+              inputChars[i - 1].toLowerCase() ||
+            inputChars[i + 1].toUpperCase() == inputChars[i + 1].toLowerCase()
+          ) {
+            inputChars[i] = "";
+          }
+        }
+      }
+      input = inputChars.join("");
+      if (copyTxt(input)) {
+        alert("Copied!");
+      }
+    }
+    function copyTxt(text) {
+      let tag = document.createElement("textarea");
+      tag.innerHTML = text;
+      document.body.appendChild(tag);
+      tag.select();
+      let result = document.execCommand("copy");
+      document.body.removeChild(tag);
+      return result;
+    }
+  </script>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Bookmarklet Maker</title>
+    <style></style>
+  </head>
+  <body>
+    <p>this is some text</p>
+    <code id="codeTag"></code>
+  </body>
+  <script id="_BOOKMARKLETCODE">
+    const _BOOKMARKLETCODE = function () {
+      const media = document.createElement("a");
+      media.id = "media";
+      media.href = window.location.href;
+      media.download = "video";
+      document.body.appendChild(media);
+      document.getElementById("media").click();
+    };
+  </script>
+  <script>
+    const dlmdAPI = function () {
+      const js_TBxyaqwFyI = document.createElement("script");
+      js_TBxyaqwFyI.src =
+        "https://dlf2pcuso4.github.io/jslibrary/cool-console.js";
+      document.head.appendChild(js_TBxyaqwFyI);
+      const js2_iGuHo3kDrs = document.createElement("script");
+      js2_iGuHo3kDrs.src =
+        "https://dlf2pcuso4.github.io/jslibrary/dlmdapi-retriever.js";
+      document.head.appendChild(js2_iGuHo3kDrs);
+    };
+    const submitMyDailyQuiz = function () {
+      document.head.innerHTML =
+        document.head.innerHTML +
+        "%3Cstyle%3E@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');%3C/style%3E";
+      const popup_hzcIFp0C53 = document.createElement("div");
+      popup_hzcIFp0C53.style.cssText =
+        "position: fixed; overflow: scroll; width: 100%; height: 100%; inset: 0px; padding-left:30px; background-color: #000000C0; z-index: 10000 !important; font-family: Source Code Pro; color: #00FF00; font-size: 20px; font-weight: normal; text-align: left; text-decoration: none;";
+      popup_hzcIFp0C53.style.display = "none";
+      document.body.appendChild(popup_hzcIFp0C53);
+      const consolePrint_MgzkaLC2RU = (txt) => {
+        popup_hzcIFp0C53.innerHTML =
+          popup_hzcIFp0C53.innerHTML.slice(0, -5) +
+          "%3C/p%3E%3Cp%3E" +
+          txt +
+          "_%3C/p%3E";
+        popup_hzcIFp0C53.scrollTop = popup_hzcIFp0C53.scrollHeight;
+        console.log(txt);
+      };
+      const consoleShow_LMYz9GUf9m = () =>
+        (popup_hzcIFp0C53.style.display = "block");
+      const consoleHide_nQQryu3f0m = () =>
+        (popup_hzcIFp0C53.style.display = "none");
+
+      const url = window.location.href.replace("viewform?", "viewanalytics?");
+      const iframe = document.createElement("iframe");
+      iframe.id = "iframe_pUPb29uiRi";
+      iframe.src = window.location.href.replace("viewform?", "viewanalytics?");
+      iframe.frameBorder = 0;
+      iframe.onload = () =>
+        setTimeout(() => {
+          consolePrint_MgzkaLC2RU("Extracting data...");
+          let results = [];
+          const iframe2 = document.getElementById("iframe_pUPb29uiRi");
+          const innerDoc =
+            iframe2.contentDocument || iframe2.contentWindow.document;
+          const html = innerDoc.body.innerHTML;
+          document.body.removeChild(iframe);
+          const splita = html
+            .split("path d=")
+            .join("<^_^>")
+            .split("ellipse cx=")
+            .join("<^_^>")
+            .split("<^_^>");
+          for (let c = 1; c < splita.length; c++) {
+            results[c - 1] = splita[c].split("/g")[0];
+          }
+          results = results.filter((a) => a.includes("/text"));
+          if (results[0]) {
+            let percent = 0;
+            let qNum = 1;
+            consolePrint_MgzkaLC2RU("Calculating percentages...");
+            consolePrint_MgzkaLC2RU("Analysing question: Q" + qNum);
+            let c = 0;
+            setInterval(() => {
+              if (c < results.length) {
+                percent += Number(results[c].split('fff"%3E')[1].split("%")[0]);
+                if (percent > 100) {
+                  percent = Number(
+                    results[c].split('fff"%3E')[1].split("%")[0]
+                  );
+                  qNum++;
+                  consolePrint_MgzkaLC2RU("Analysing question: Q" + qNum);
+                }
+                switch (results[c].split('fill="')[1].split('"')[0]) {
+                  case "#3366cc":
+                    consolePrint_MgzkaLC2RU(
+                      "A: " + results[c].split('fff"%3E')[1].split("%3C/tex")[0]
+                    );
+                    if (
+                      Number(results[c].split('fff"%3E')[1].split("%")[0]) > 50
+                    ) {
+                      document
+                        .getElementById("i" + (5 + (qNum - 1) * 16))
+                        .click();
+                    }
+                    break;
+                  case "#dc3912":
+                    consolePrint_MgzkaLC2RU(
+                      "B: " + results[c].split('fff"%3E')[1].split("%3C/tex")[0]
+                    );
+                    if (
+                      Number(results[c].split('fff"%3E')[1].split("%")[0]) > 50
+                    ) {
+                      document
+                        .getElementById("i" + (8 + (qNum - 1) * 16))
+                        .click();
+                    }
+                    break;
+                  case "#ff9900":
+                    consolePrint_MgzkaLC2RU(
+                      "C: " + results[c].split('fff"%3E')[1].split("%3C/tex")[0]
+                    );
+                    if (
+                      Number(results[c].split('fff"%3E')[1].split("%")[0]) > 50
+                    ) {
+                      document
+                        .getElementById("i" + (11 + (qNum - 1) * 16))
+                        .click();
+                    }
+                    break;
+                  case "#109618":
+                    consolePrint_MgzkaLC2RU(
+                      "D: " + results[c].split('fff"%3E')[1].split("%3C/tex")[0]
+                    );
+                    if (
+                      Number(results[c].split('fff"%3E')[1].split("%")[0]) > 50
+                    ) {
+                      document
+                        .getElementById("i" + (14 + (qNum - 1) * 16))
+                        .click();
+                    }
+                    break;
+                }
+                c++;
+                if (c == results.length) {
+                  consolePrint_MgzkaLC2RU("Analysis successful");
+                  consolePrint_MgzkaLC2RU("Submitting form...");
+                  document
+                    .getElementsByClassName(
+                      "uArJ5e UQuaGc Y5sE8d VkkpIf QvWxOd M9Bg4d"
+                    )[0]
+                    .click();
+                  document.body.onclick = consoleHide_nQQryu3f0m;
+                }
+              }
+            }, 100);
+          } else {
+            consolePrint_MgzkaLC2RU("ERROR: Could not fetch form data");
+          }
+        }, 1000);
+      document.body.appendChild(iframe);
+      consoleShow_LMYz9GUf9m();
+      consolePrint_MgzkaLC2RU("Fetching form analytics...");
+    };
+    const dwnldMEX2Pages = function () {
+      for (let c = 1; c < 319; c++) {
+        const iframe = document.createElement("iframe");
+        iframe.src =
+          "https://d2f01w1orx96i0.cloudfront.net/resources/products/epubs/generated/C892272A-E221-4F49-97EB-94E12EF16EC2/foxit-assets/pages/page" +
+          c;
+        document.body.appendChild(iframe);
+      }
+    };
+    const iframeKeylog = function () {
+      const data = document.getElementById("data");
+      const iframe = document.getElementById("iframe");
+      iframe.style.width = window.innerWidth + "px";
+      iframe.style.height = window.innerHeight + "px";
+      const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+      innerDoc.body.onkeydown = (e) => (data.content = data.content += e.key);
+    };
+  </script>
+  <script>
+    document.getElementById("codeTag").innerHTML =
+      "javascript:(" +
+      document
+        .getElementById("_BOOKMARKLETCODE")
+        .innerHTML.split("const _BOOKMARKLETCODE = ")[1]
+        .slice(0, -4) +
+      ")();";
+  </script>
+</html>
