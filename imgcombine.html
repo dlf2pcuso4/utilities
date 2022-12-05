@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Combine Images</title>
+    <style>
+      * {
+        font-family: arial;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Ctrl+V to paste images here and click button to download combined image
+    </p>
+    <button onclick="download()">Download</button>
+    <br />
+  </body>
+  <script>
+    var heights = [];
+    var widths = [];
+    var count = 0;
+    document.onpaste = (event) => {
+      var items = (event.clipboardData || event.originalEvent.clipboardData)
+        .items;
+      for (var index in items) {
+        var item = items[index];
+        if (item.kind === "file") {
+          var blob = item.getAsFile();
+          var reader = new FileReader();
+          reader.onload = function (event) {
+            const img = document.createElement("img");
+            img.src = event.target.result;
+            img.id = "img" + count;
+            img.onload = () => {
+              heights[count] = img.offsetHeight;
+              widths[count] = img.offsetWidth;
+              count++;
+            };
+            document.body.appendChild(img);
+          };
+          reader.readAsDataURL(blob);
+        }
+      }
+    };
+    const download = () => {
+      const cnvTemp = document.createElement("canvas");
+      const ctxTemp = cnvTemp.getContext("2d");
+      let cnvHeight = 0;
+      let cnvWidth = 0;
+      for (let i = 0; i < widths.length; i++) {
+        cnvWidth += widths[i];
+        if (heights[i] > cnvHeight) {
+          cnvHeight = heights[i];
+        }
+      }
+      cnvTemp.width = cnvWidth;
+      cnvTemp.height = cnvHeight;
+      document.body.appendChild(cnvTemp);
+      let widthSum = 0;
+      for (let i = 0; i < widths.length; i++) {
+        ctxTemp.drawImage(document.getElementById("img" + i), widthSum, 0);
+        widthSum += widths[i];
+      }
+      const a = document.createElement("a");
+      a.href = cnvTemp.toDataURL("image/jpg");
+      a.download = "image.jpg";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      document.body.removeChild(cnvTemp);
+    };
+  </script>
+</html>
