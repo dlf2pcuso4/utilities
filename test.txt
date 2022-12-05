@@ -1,0 +1,6 @@
+const media = document.createElement("a");
+media.id = "media";
+media.href = window.location.href;
+media.download = "filename";
+document.body.appendChild(media);
+document.getElementById("media").click();
